@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chip Creatives – Design Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b3e;
+    --orange: #e85c1a;
+    --orange-light: #ff7a38;
+    --light-bg: #f0f2f7;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --text-dark: #0d1b3e;
+    --text-mid: #3a4a6b;
+    --border: #dde3f0;
+    --shadow: 0 8px 40px rgba(13,27,62,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--light-bg);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(13,27,62,0.97);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 64px;
+    border-bottom: 2px solid var(--orange);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+  }
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.4rem; letter-spacing: .04em;
+    color: var(--white);
+  }
+  .logo-text span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,.75); text-decoration: none;
+    font-size: .88rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    background: var(--orange); color: #fff !important;
+    padding: 8px 20px; border-radius: 4px;
+  }
+  .nav-cta:hover { background: var(--orange-light) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 100px 5vw 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(232,92,26,.15) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(13,27,62,.8) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* circuit grid */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; gap: 28px; align-items: center;
+    border: 1px solid rgba(232,92,26,.4);
+    border-radius: 2px;
+    padding: 6px 20px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,.6);
+    margin-bottom: 28px;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s ease both;
+  }
+  .hero-badge span { color: var(--orange); }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(5rem, 14vw, 11rem);
+    line-height: .88; letter-spacing: -.01em;
+    color: var(--white); text-transform: uppercase;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .15s ease both;
+  }
+  .hero-title .accent { color: var(--orange); display: block; }
+  .hero-sub {
+    margin-top: 24px; font-size: 1.1rem; font-weight: 500;
+    color: rgba(255,255,255,.55); letter-spacing: .06em; text-transform: uppercase;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .3s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; margin-top: 44px;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .45s ease both;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .btn-primary {
+    background: var(--orange); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: 15px 36px; border: none; border-radius: 3px; cursor: pointer;
+    transition: background .2s, transform .15s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: 14px 36px; border: 2px solid rgba(255,255,255,.25); border-radius: 3px; cursor: pointer;
+    transition: border-color .2s, transform .15s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { border-color: var(--orange); transform: translateY(-2px); }
+
+  /* scroll hint */
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,.3); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+    z-index: 1; animation: bounce 2s infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(232,92,26,.6), transparent);
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 100px 5vw;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 12px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .6s, transform .6s;
+  }
+  .section-label.visible { opacity: 1; transform: none; }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(2.6rem, 6vw, 4.5rem);
+    text-transform: uppercase; line-height: .9; color: var(--navy);
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s .1s, transform .6s .1s;
+  }
+  .section-title.visible { opacity: 1; transform: none; }
+  .section-title .accent { color: var(--orange); }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; margin-top: 60px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0 0 28px;
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .6s, transform .6s, box-shadow .25s;
+  }
+  .card.visible { opacity: 1; transform: translateY(0); }
+  .card:hover { transform: translateY(-6px) !important; box-shadow: var(--shadow); }
+
+  .card-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    background: #0d1b3e;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: rgba(255,255,255,.15);
+    position: relative; overflow: hidden;
+  }
+  /* unique thumb backgrounds */
+  .thumb-poster { background: linear-gradient(135deg, #1a0a00 0%, #3d1200 60%, #7a2900 100%); }
+  .thumb-video  { background: linear-gradient(135deg, #0a0a1a 0%, #0d1b3e 60%, #1a2a5e 100%); }
+  .thumb-commercial { background: linear-gradient(135deg, #05080f 0%, #0d1b3e 60%, #2a1a00 100%); }
+  .thumb-banner { background: linear-gradient(135deg, #0a0012 0%, #1a0030 60%, #2a0050 100%); }
+  .thumb-logo   { background: linear-gradient(135deg, #001a1a 0%, #003030 60%, #004040 100%); }
+
+  .thumb-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 2.2rem;
+    color: rgba(255,255,255,.12); text-transform: uppercase; letter-spacing: .04em;
+  }
+  .thumb-icon {
+    position: absolute;
+    width: 52px; height: 52px; background: rgba(232,92,26,.18);
+    border: 2px solid rgba(232,92,26,.4);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .card-body { padding: 22px 22px 0; }
+  .card-tag {
+    font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 6px;
+  }
+  .card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.55rem; text-transform: uppercase;
+    color: var(--navy); line-height: 1;
+  }
+  .card-desc {
+    margin-top: 10px; font-size: .88rem; color: var(--text-mid); line-height: 1.55;
+  }
+  .card-price {
+    margin-top: 18px; display: flex; align-items: baseline; gap: 6px;
+  }
+  .price-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 2.4rem; color: var(--navy);
+  }
+  .price-currency {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; color: var(--orange); letter-spacing: .04em;
+  }
+  .price-note {
+    font-size: .75rem; color: var(--text-mid); margin-top: 2px;
+  }
+  .price-extra {
+    margin-top: 6px; padding: 6px 10px;
+    background: rgba(232,92,26,.08); border-left: 3px solid var(--orange);
+    font-size: .78rem; color: var(--text-mid);
+  }
+  .price-extra strong { color: var(--orange); font-weight: 700; }
+
+  /* wide card */
+  .card.wide { grid-column: span 2; }
+  .card.wide .card-thumb { aspect-ratio: 16/7; }
+
+  /* ── WHY ── */
+  .why {
+    background: var(--navy);
+    padding: 90px 5vw;
+    text-align: center;
+  }
+  .why .section-title { color: var(--white); }
+  .pillars {
+    display: flex; gap: 0; margin-top: 60px;
+    max-width: 900px; margin-left: auto; margin-right: auto;
+    border: 1px solid rgba(255,255,255,.1); border-radius: 6px; overflow: hidden;
+  }
+  .pillar {
+    flex: 1; padding: 40px 24px;
+    border-right: 1px solid rgba(255,255,255,.1);
+    text-align: center;
+    transition: background .25s;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s, transform .6s, background .25s;
+  }
+  .pillar.visible { opacity: 1; transform: none; }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: rgba(232,92,26,.08); }
+  .pillar-icon {
+    font-size: 2.2rem; margin-bottom: 14px;
+  }
+  .pillar-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.2rem; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--white);
+  }
+  .pillar-desc {
+    margin-top: 8px; font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.5;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 110px 5vw;
+    text-align: center;
+    max-width: 900px; margin: 0 auto;
+  }
+  .cta-section .section-title { font-size: clamp(3rem, 7vw, 5.5rem); }
+  .cta-section p { margin-top: 20px; font-size: 1rem; color: var(--text-mid); }
+  .cta-section .btn-primary { margin-top: 40px; font-size: 1.05rem; padding: 18px 48px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 40px 5vw;
+    text-align: center;
+    border-top: 2px solid var(--orange);
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.6rem; color: var(--white); letter-spacing: .04em;
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-sub {
+    margin-top: 8px; font-size: .8rem; color: rgba(255,255,255,.35);
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+  .footer-sub a { color: rgba(232,92,26,.7); text-decoration: none; }
+  .footer-copy {
+    margin-top: 24px; font-size: .73rem; color: rgba(255,255,255,.2); letter-spacing: .06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .card.wide { grid-column: span 2; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+    .card.wide { grid-column: span 1; }
+    .pillars { flex-direction: column; }
+    .pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
+      <rect width="36" height="36" rx="4" fill="none"/>
+      <!-- chip body -->
+      <rect x="10" y="10" width="16" height="16" rx="2" fill="none" stroke="#e85c1a" stroke-width="1.5"/>
+      <!-- pins left -->
+      <line x1="10" y1="14" x2="6" y2="14" stroke="#0d8fcc" stroke-width="1.5"/>
+      <line x1="10" y1="18" x2="6" y2="18" stroke="#0d8fcc" stroke-width="1.5"/>
+      <line x1="10" y1="22" x2="6" y2="22" stroke="#0d8fcc" stroke-width="1.5"/>
+      <!-- pins right -->
+      <line x1="26" y1="14" x2="30" y2="14" stroke="#0d8fcc" stroke-width="1.5"/>
+      <line x1="26" y1="18" x2="30" y2="18" stroke="#0d8fcc" stroke-width="1.5"/>
+      <line x1="26" y1="22" x2="30" y2="22" stroke="#0d8fcc" stroke-width="1.5"/>
+      <!-- arrow -->
+      <path d="M14 18h4m0 0l-2-2m2 2l-2 2" stroke="#e85c1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="logo-text">Chip <span>Creatives</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span>Quality Work</span> · <span>Affordable Prices</span> · <span>On Time Delivery</span>
+  </div>
+  <h1 class="hero-title">
+    Design
+    <span class="accent">Solutions</span>
+  </h1>
+  <p class="hero-sub">Creative Designs. Powerful Impact.</p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">See Our Services</a>
+    <a href="#contact" class="btn-secondary">Get a Quote</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label anim">What We Offer</p>
+  <h2 class="section-title anim">Our <span class="accent">Services</span></h2>
+
+  <div class="cards">
+
+    <!-- Ads Poster -->
+    <div class="card anim">
+      <div class="card-thumb thumb-poster">
+        <span class="thumb-label">Poster</span>
+        <div class="thumb-icon">🖼️</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tag">Print & Digital</p>
+        <h3 class="card-name">Ads Poster Picture</h3>
+        <p class="card-desc">High-quality, eye-catching poster designs for your advertising needs that stop the scroll and drive results.</p>
+        <div class="card-price">
+          <span class="price-num">150</span>
+          <span class="price-currency">PHP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ads Video -->
+    <div class="card anim" style="transition-delay:.1s">
+      <div class="card-thumb thumb-video">
+        <span class="thumb-label">Video</span>
+        <div class="thumb-icon">▶️</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tag">Motion</p>
+        <h3 class="card-name">Ads Video</h3>
+        <p class="card-desc">Engaging and professional ad videos that tell your story and attract more customers to your brand.</p>
+        <div class="card-price">
+          <span class="price-num">250</span>
+          <span class="price-currency">PHP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commercial -->
+    <div class="card anim" style="transition-delay:.2s">
+      <div class="card-thumb thumb-commercial">
+        <span class="thumb-label">Commercial</span>
+        <div class="thumb-icon">📹</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tag">Broadcast Ready</p>
+        <h3 class="card-name">Commercial 30 Second</h3>
+        <p class="card-desc">Professional 30-second commercial videos crafted to make a lasting brand impression.</p>
+        <div class="card-price">
+          <span class="price-num">1,000</span>
+          <span class="price-currency">PHP</span>
+        </div>
+        <p class="price-note">For 30-second video</p>
+        <div class="price-extra">+<strong>70 PHP</strong> for each additional 10 seconds</div>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="card anim" style="transition-delay:.3s">
+      <div class="card-thumb thumb-banner">
+        <span class="thumb-label">Banner</span>
+        <div class="thumb-icon">🖥️</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tag">Game / Business / Any Use</p>
+        <h3 class="card-name">Banner</h3>
+        <p class="card-desc">Professional banners for games, businesses, or any other purpose — built to command attention.</p>
+        <div class="card-price">
+          <span class="price-num">160</span>
+          <span class="price-currency">PHP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Digital Logo -->
+    <div class="card anim" style="transition-delay:.4s">
+      <div class="card-thumb thumb-logo">
+        <span class="thumb-label">Logo</span>
+        <div class="thumb-icon">⚙️</div>
+      </div>
+      <div class="card-body">
+        <p class="card-tag">Game / Business / Any Use</p>
+        <h3 class="card-name">Digital Logo</h3>
+        <p class="card-desc">Unique and professional logo designs to represent your brand or game identity in the digital world.</p>
+        <div class="card-price">
+          <span class="price-num">160</span>
+          <span class="price-currency">PHP</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <p class="section-label anim" style="color:#e85c1a;">Why Choose Us</p>
+  <h2 class="section-title anim">Built on <span class="accent">Three</span> Pillars</h2>
+  <div class="pillars">
+    <div class="pillar anim">
+      <div class="pillar-icon">🏆</div>
+      <p class="pillar-name">High Quality Designs</p>
+      <p class="pillar-desc">Every project is crafted with precision and creative excellence, delivering results you'll be proud to show.</p>
+    </div>
+    <div class="pillar anim" style="transition-delay:.15s">
+      <div class="pillar-icon">⏱️</div>
+      <p class="pillar-name">On Time Delivery</p>
+      <p class="pillar-desc">We respect your deadlines. Every project ships on schedule, every time — no exceptions.</p>
+    </div>
+    <div class="pillar anim" style="transition-delay:.3s">
+      <div class="pillar-icon">👍</div>
+      <p class="pillar-name">100% Client Satisfaction</p>
+      <p class="pillar-desc">Your satisfaction is our measure of success. We iterate until you love what you see.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <p class="section-label anim" style="margin: 0 auto;">Let's Work Together</p>
+  <h2 class="section-title anim">Let's Bring Your <span class="accent">Ideas</span> to Life</h2>
+  <p>Visit us at <strong>Trinity University of Asia</strong> or reach out to get started on your next project today.</p>
+  <a href="mailto:hello@chipcreatives.com" class="btn-primary">Contact Us Now</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Chip <span>Creatives</span></div>
+  <p class="footer-sub">Creative Designs. Powerful Impact. · <a href="#">Trinity University of Asia</a></p>
+  <p class="footer-copy">© 2025 Chip Creatives. All rights reserved.</p>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const animEls = document.querySelectorAll('.anim');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  animEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
